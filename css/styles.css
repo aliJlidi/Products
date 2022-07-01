@@ -60,14 +60,16 @@ text-align: center;
 }
 .formElement{
 display: grid;
-grid-template-columns: 1fr 2fr ;
-    margin: 15px;
+grid-template-columns: 1fr  2fr 5fr;
+margin: 15px;
 }
 .form{
     margin: 20px;
 }
 
-
+.error {
+    color: #FF0001;
+}  
 
 
 

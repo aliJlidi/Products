@@ -1,8 +1,18 @@
+
+<?php
+require_once('includes/Product.inc.php');
+
+$data = new Product();
+
+$all = $data->fetchAll();
+
+
+
+   
+?>
+
+
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
     <head>
         <meta charset="utf-8">
@@ -18,28 +28,30 @@
       <section id="Header">
         <h2>Product List</h2>
         <div class="ButtonContainer">
-            <button type="button" class="btn btn-light" style="margin-right: 10px;" onclick="location.href='AddProduct.html'">ADD</button>
+            <button type="button" class="btn btn-light" style="margin-right: 10px;" onclick="location.href='productForm.php'">ADD</button>
             <button type="button" class="btn btn-danger">MASS DELETE</button>
         </div>
 
       </section>
       <hr class="solid">
       <section id="ProductList">
+  <?php
 
+  foreach ($all as $key=>$val) {?>
          <div class="Product">
              <div class="Checkbox">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
              </div>
              <div class="Description">
-                 <div id="sku">Test</div>
-                 <div id="name">test</div>
-                 <div id="price">test</div>
-                 <div id="productType">test</div>
+                 <div id="sku"><?= $val['sku']?></div>
+                 <div id="name"><?= $val['name']?></div>
+                 <div id="price"><?=$val['price']?></div>
+                 <div id="productType"><?=$val['type']?></div>
 
              </div>
             
          </div>
-        
+         <?php }  ?>
     </section>
     <hr class="solid">
     <section id="Footer">

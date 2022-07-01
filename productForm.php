@@ -1,8 +1,7 @@
+<?php
+require_once('includes/AddProduct.inc.php');
+?>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
     <head>
         <meta charset="utf-8">
@@ -20,32 +19,47 @@
         <section id="Header">
             <h2>Product Add</h2>
             <div class="ButtonContainer">
-                <button type="submit"  class="btn btn-primary" style="margin-right: 10px;">Save</button>
-                <button type="button" class="btn btn-light " onclick="location.href='index.html'">Cancel</button>
+                <button type="submit" 
+                form="myform"
+                value="Save"
+                name="save" class="btn btn-primary" style="margin-right: 10px;">Save</button>
+                <button type="button" class="btn btn-light " onclick="location.href='index.php'">Cancel</button>
             </div>
     
           </section>
           <hr class="solid">
           <section id="productForm" class="col-md-3 contents">
     
-            <form class="form">
-                <div class="input-group col-xs-2 formElement">
+            <form id="myform" class="form" action="includes\AddProduct.inc.php" method="POST">
+                <div class="formElement">
                   <label class="label">SKU  </label>
-                  <input type="text" class="form-control" style="width: 100%;" id="sku"  placeholder="Enter Id of Product">
+                  <span class="error">*<?php echo $skuErr; ?> </span>
+                  <input type="text"
+                    id="sku"
+                    name="sku"
+                     class="form-control" style="width: 100%;"  placeholder="Enter Id of Product">
                 </div>
-                <div class="input-group col-xs-2 formElement">
+                <div class="formElement">
                   <label  class="label">Name</label>
-                  <input type="text" class="form-control " style="width: 100%;"id="name" placeholder="Name">
+                  <span class="error">* <?php echo $nameErr; ?> </span>
+                  <input type="text"
+                  id="name"
+                  name="name"
+                   class="form-control " style="width: 100%;" placeholder="Name">
                 </div>
-                <div class="input-group col-xs-2 formElement">
+                <div class=" formElement">
                     <label class="label" >Price ($)</label>
-                    <input type="text" class="form-control " style="width: 100%;" id="price" placeholder="Price">
+                    <span class="error">* <?php echo $priceErr; ?> </span>
+                    <input type="text"
+                    id="price" 
+                    name="price" class="form-control " style="width: 100%;" placeholder="Price">
                   </div>
                   <div class="input-group mb-3 formElement">
                     <div class="input-group-prepend">
                       <label  class="label" >Type Switcher</label>
+                      <span class="error">* <?php echo $typeErr; ?> </span>
                     </div>
-                    <select class="custom-select" id="productType">
+                    <select class="custom-select" id="productType" name="productType">
                       <option selected>Choose...</option>
                       <option value="DVD">DVD</option>
                       <option value="Furniture">Furniture</option>
@@ -56,25 +70,25 @@
                     <!-- DVD -->
                   <div class="DVD input-group col-xs-2 formElement">
                     <label class="label" >Size(MB)</label>
-                    <input type="text" class="form-control " style="width: 100%;" id="size" placeholder="Price">
+                    <input type="text" class="form-control " style="width: 100%;" id="size" placeholder="Please provide size">
                   </div>
 
                   <!--Furniture-->
                   <div class="Furniture input-group col-xs-2 formElement">
                     <label class="label" >Height(CM)</label>
-                    <input type="text" class="form-control " style="width: 100%;" id="height" placeholder="Price">
+                    <input type="text" class="form-control " style="width: 100%;" id="height" placeholder="Please provide height">
 
                     <label class="label" >Width(CM)</label>
-                    <input type="text" class="form-control " style="width: 100%;" id="width" placeholder="Price">
+                    <input type="text" class="form-control " style="width: 100%;" id="width" placeholder="Please provide width">
 
                     <label class="label" >Lenght(CM)</label>
-                    <input type="text" class="form-control " style="width: 100%;" id="length" placeholder="Price">
+                    <input type="text" class="form-control " style="width: 100%;" id="length" placeholder="Please provide lenght">
                   </div>
 
                   <!--Book-->
                   <div class="Book input-group col-xs-2 formElement">
                     <label class="label" >Weigth(KG)</label>
-                    <input type="text" class="form-control " style="width: 100%;" id="weight" placeholder="Price">
+                    <input type="text" class="form-control " style="width: 100%;" id="weight" placeholder="Please provide weight">
                   </div>
                 
               </form>
