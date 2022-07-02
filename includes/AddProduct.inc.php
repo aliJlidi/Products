@@ -3,76 +3,161 @@ require_once('Product.inc.php');
 
 
 //initialize the Error message 
-$skuErr = $nameErr = $priceErr = $typeErr = "";
-$sku = $name =$price = $type ="";
-$validators = [
-    'DVD' => 'DVD',
-    'Book' => 'Book',
-    'Furniture' => 'Furniture',
-    'None' => 'None'
-];
-$type = filter_input(INPUT_POST, 'productType') == null ? "None":filter_input(INPUT_POST, 'productType') ;
-$validatorClass = $validators[$type];
+$skuErr = $nameErr = $priceErr = $typeErr = $sizeErr =$heightErr =$widthErr =$lengthErr = $weightErr = "";
+$sku = $name =$price = $type =$size=$width=$height=$length=$weight ="";
+$displayDVD =$displayFurniture =$displayBook ="none";
 
 //validate fields before submit 
 if(isset($_POST['save'])){
-
+    $name = $_POST["name"];  
+    $price = $_POST["price"]; 
+    $data = new Product();
+    $record = $data->fetchOne($_POST['sku']); 
     //Sku Validation  
     if (empty($_POST["sku"])) {  
-        $nameErr = "SKU is required";  
-   } else  {
-    $data = new Product();
-    $all = $data->fetchOne($_POST["sku"]);
-           // check if record already exist 
-           if ($all[0]>1) {  
-               $nameErr = "sku already exists";  
+        $skuErr = "SKU is required";
+  
+   }
+   // check if record already exist 
+           elseif ($record) {  
+               $skuErr = $record['sku']." exists"; 
+             
            } 
-        } 
+        
 
     //Name Validation  
-    if (empty($_POST["name"])) {  
-         $nameErr = "Name is required";  
-    } else {  
-        $name = $_POST["name"];  
+    elseif (empty($_POST["name"])) {  
+         $nameErr = "Name is required"; 
+        
+    } elseif(!preg_match("/^[a-zA-Z ]*$/",$name))  {  
+        
             // check if name only contains letters and whitespace  
-            if (!preg_match("/^[a-zA-Z ]*$/",$name)) {  
+           
                 $nameErr = "Only alphabets and white space are allowed";  
-            }  
+            
+        }  
 
-                //Number Validation  
-    if (empty($_POST["price"])) {  
+   //Number Validation  
+    elseif (empty($_POST["price"])) {  
         $priceErr = "Price is required";  
 } 
-else {  
-        $price = $_POST["price"];  
-        // check if mobile no is well-formed  
-        if (!preg_match ("/^[0-9]*$/", $price) ) {  
+elseif(!preg_match ("/^[0-9]*$/", $price) ) {  
+      
+     
+         
         $priceErr = "Only numeric value is allowed.";  
-        }  
-         //Empty Field Validation  
-    if (empty($_POST["productType"])) {  
-        $genderErr = "Type is required";  
-            }
- else 
-        {  
-        $gender = $_POST["productType"];  
-         }  
-
+        
     }  
+        
+//Empty Field Validation  
+    elseif (empty($_POST["productType"])||$_POST["productType"]=="") {  
+        $typeErr = "Type is required";  
+             }
+    elseif($_POST["productType"]=='DVD'){
+           
+            $displayDVD='Block';
+            $displayBook='none';
+            $displayFurniture='none';
+            $size = $_POST["size"];
+            //Number Validation  
+           if (empty($_POST["size"])) {  
+        $sizeErr = "Size is required";  
+            } 
+    elseif (!preg_match ("/^[0-9]*$/", $size) ) {  
+        $sizeErr = "Only numeric value is allowed.";  
+                 }
+          else {
+          $obj = new DVD();
+          $obj->set_sku($_POST['sku']);
+          $obj->set_name($_POST['name']);
+          $obj->set_price($_POST['price']);
+          $obj->set_size($_POST['size']);
+          $obj->insertData(); 
+          header('Location: index.php');
+        }
+      
+ 
+        }
+        elseif($_POST["productType"]=='Furniture'){
+            $displayDVD='none';
+            $displayBook='none';
+            $displayFurniture='Block';
+            $width =$_POST["width"];
+            $height=$_POST["height"];
+            $length=$_POST["length"];
+            if (empty($_POST["height"])) {  
+                $heightErr = "height is required";  
+                    } 
+            elseif(!preg_match ("/^[0-9]*$/", $height) )  {  
+                 
+                $heightErr = "Only numeric value is allowed.";  
+                }
+            
+            elseif(empty($_POST["width"])) {  
+                $widthErr = "width is required";  
+                    } 
+            elseif(!preg_match ("/^[0-9]*$/", $width) ) 
+                {  
+                $widthErr = "Only numeric value is allowed.";  
+                }
+            
+            elseif(empty($_POST["length"])) {  
+                $lengthErr = "length is required";  
+                    } 
+            elseif(!preg_match ("/^[0-9]*$/", $length) ) {  
+             
+                 
+                $lengthErr = "Only numeric value is allowed.";  
+                }
+            else{
+            $obj = new Furniture();
+            $obj->set_sku($_POST['sku']);
+            $obj->set_name($_POST['name']);
+            $obj->set_price($_POST['price']);
+            $obj->set_dimension($_POST['height'],$_POST['width'],$_POST['length']);
+            $obj->insertData(); 
+            header('Location: index.php');
+            }
+        }
+        elseif($_POST["productType"]=='Book'){
+            $displayDVD='none';
+            $displayBook='Block';
+            $displayFurniture='none';
+            $weight =$_POST["weight"];
+            if (empty($_POST["weight"])) {  
+                $weightErr = "weight is required";  
+                    } 
+            elseif(!preg_match ("/^[0-9]*$/", $weight) ) {  
+                $weightErr = "Only numeric value is allowed.";  
+                }
+            else{
+            $obj = new Book();
+            $obj->set_sku($_POST['sku']);
+            $obj->set_name($_POST['name']);
+            $obj->set_price($_POST['price']);
+            $obj->set_weight($_POST['weight']);
+            $obj->insertData(); 
+            header('Location: index.php');
+        }
+    }
+        else{
+            $displayDVD='none';
+            $displayBook='none';
+            $displayFurniture='none';
+        }
+        $sku = $_POST["sku"];
+        $name =$_POST["name"];
+        $price=$_POST["price"];
+        $type =$_POST["productType"] ;
+         }  
+       
+     
+ 
 
 
+   /* 
+ */
 
 
-    require_once("Product.inc.php");
-    $obj = new $validatorClass();
-
-    $obj->set_sku($_POST['sku']);
-    $obj->set_name($_POST['name']);
-    $obj->set_price($_POST['price']);
-    $obj->set_type($_POST['productType']);
-
-    $obj->insertData();
-}
-}
 
 ?>

@@ -29,66 +29,105 @@ require_once('includes/AddProduct.inc.php');
           </section>
           <hr class="solid">
           <section id="productForm" class="col-md-3 contents">
-    
-            <form id="myform" class="form" action="includes\AddProduct.inc.php" method="POST">
+          <span class = "error">* required field </span>  
+            <form id="myform" class="form" action="productForm.php" method="POST">
                 <div class="formElement">
                   <label class="label">SKU  </label>
-                  <span class="error">*<?php echo $skuErr; ?> </span>
                   <input type="text"
                     id="sku"
                     name="sku"
-                     class="form-control" style="width: 100%;"  placeholder="Enter Id of Product">
+                    value="<?=$sku?>"
+                     class="form-control" style="width: 100%;"  placeholder=" SKU">
+                     <span class="error" >*<?php echo $skuErr; ?> </span>
                 </div>
                 <div class="formElement">
                   <label  class="label">Name</label>
-                  <span class="error">* <?php echo $nameErr; ?> </span>
                   <input type="text"
                   id="name"
                   name="name"
-                   class="form-control " style="width: 100%;" placeholder="Name">
+                  value="<?=$name?>"
+                   class="form-control " style="width: 100%;" placeholder="Name">  
+                  <span class="error">* <?php echo $nameErr; ?> </span>
                 </div>
                 <div class=" formElement">
                     <label class="label" >Price ($)</label>
-                    <span class="error">* <?php echo $priceErr; ?> </span>
                     <input type="text"
                     id="price" 
-                    name="price" class="form-control " style="width: 100%;" placeholder="Price">
+                    name="price" 
+                    value="<?=$price?>"
+                    class="form-control " style="width: 100%;" placeholder="Price">
+                    <span class="error">* <?php echo $priceErr; ?> </span>
                   </div>
                   <div class="input-group mb-3 formElement">
                     <div class="input-group-prepend">
-                      <label  class="label" >Type Switcher</label>
-                      <span class="error">* <?php echo $typeErr; ?> </span>
+                      <label  class="label" >Type</label>
                     </div>
-                    <select class="custom-select" id="productType" name="productType">
-                      <option selected>Choose...</option>
+                    <span class="error">* <?php echo $typeErr; ?> </span>
+                    <select style="margin-left:50px;"  class="custom-select" id="productType" name="productType">
+                      <option selected><?=$type ?></option>
                       <option value="DVD">DVD</option>
                       <option value="Furniture">Furniture</option>
                       <option value="Book">Book</option>
                     </select>
+                   
                   </div>
 
                     <!-- DVD -->
-                  <div class="DVD input-group col-xs-2 formElement">
+                 <div class='DVD  formElement' style='display:<?=$displayDVD?> ;'> 
                     <label class="label" >Size(MB)</label>
-                    <input type="text" class="form-control " style="width: 100%;" id="size" placeholder="Please provide size">
+                    <input type="text" class="form-control " style="width: 100%;"
+                     id="size"
+                     name="size"
+                     value="<?=$size?>"
+                      placeholder="Size">
+                    <span class="error">* <?php echo $sizeErr; ?> </span>
                   </div>
 
                   <!--Furniture-->
-                  <div class="Furniture input-group col-xs-2 formElement">
+                   <div class='Furniture  formElement' style='display:<?=$displayFurniture?> ;'>
+                    <div>
                     <label class="label" >Height(CM)</label>
-                    <input type="text" class="form-control " style="width: 100%;" id="height" placeholder="Please provide height">
-
+                    <input type="text" class="form-control " style="width: 100%;"
+                     id="height"
+                     name="height"
+                     value="<?=$height?>"
+                      placeholder="Height">
+                    <span class="error">* <?php echo $heightErr; ?> </span>
+                    </div>
+                    <div>
                     <label class="label" >Width(CM)</label>
-                    <input type="text" class="form-control " style="width: 100%;" id="width" placeholder="Please provide width">
-
+                    <input type="text" class="form-control " style="width: 100%;"
+                     id="width" 
+                     name="width"
+                     value="<?=$width?>"
+                      placeholder="Width">
+                    <span class="error">* <?php echo $widthErr; ?> </span>
+                    </div>
+                    <div>
                     <label class="label" >Lenght(CM)</label>
-                    <input type="text" class="form-control " style="width: 100%;" id="length" placeholder="Please provide lenght">
+                    <input type="text" class="form-control " style="width: 100%;"
+                     id="length" 
+                     name="length"
+                     value="<?=$length?>"
+                     placeholder="Lenght">
+                    <span class="error">* <?php echo $lengthErr; ?> </span>
+                    </div>
+                    <input type="text" class="form-control " style="display:none;"
+                     id="dimension" 
+                     name="dimension"
+                     value="<?=$height."x".$width."x".$length?>"
+                      >
                   </div>
 
                   <!--Book-->
-                  <div class="Book input-group col-xs-2 formElement">
+                 <div class='Book  formElement' style='display:<?=$displayBook?> ;'>
                     <label class="label" >Weigth(KG)</label>
-                    <input type="text" class="form-control " style="width: 100%;" id="weight" placeholder="Please provide weight">
+                    <input type="text" class="form-control " style="width: 100%;"
+                     id="weight"
+                     name="weight"
+                     value="<?=$weight?>"
+                      placeholder="Weight">
+                    <span class="error">* <?php echo $weightErr; ?> </span>
                   </div>
                 
               </form>

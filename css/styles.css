@@ -11,23 +11,25 @@ hr.solid {
   }
 #ProductList{
 display: grid;
-grid-template-columns: 1fr 1fr 1fr 1fr;
-gap: 20px;
+grid-template-columns: repeat(4, 1fr);
+grid-column-gap: 1px;
 padding-bottom:40px;
 min-height: 600px;
 }
+
 #productForm{
    
     padding-bottom:40px;
     min-height: 600px;
+    width: 500px;
     }
 
 .Product {
     height: 180px;
     width: 300px;
     font-size:20px;
-
-    padding: 10px;
+  
+    padding: 5px;
     margin: 5px;
     transition-property: box-shadow margin-top filter;
     transition-duration: .2s;
@@ -60,7 +62,7 @@ text-align: center;
 }
 .formElement{
 display: grid;
-grid-template-columns: 1fr  2fr 5fr;
+grid-template-columns: 6fr  10fr 10fr;
 margin: 15px;
 }
 .form{
@@ -69,9 +71,19 @@ margin: 15px;
 
 .error {
     color: #FF0001;
+    margin-left:5px ;
 }  
 
 
+.DVD{
+    display: none;
+}
+.Furniture{
+    display: none;
+}
+.Book {
+    display: none;
+}
 
 
 
@@ -113,6 +125,14 @@ margin: 15px;
         height: 180px;
         width: 250px;
     }
+    #ProductList{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr ;
+        gap: 1px;
+        padding-bottom:40px;
+        min-height: 600px;
+        }
+        
   }
   /* On screens that are 992px width or less*/
 @media screen and (max-width: 992px) {
@@ -124,11 +144,18 @@ margin: 15px;
     }
     .Product {
         height: 180px;
-        width: 250px;
+        width: 230px;
     }
+    #ProductList{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr ;
+        gap: 20px;
+        padding-bottom:40px;
+        min-height: 600px;
+        }
   }
   /* On screens that are 600px width or less */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 760px) {
     #Header {
         padding: 10px;
         display: flex;
@@ -139,17 +166,51 @@ margin: 15px;
         height: 180px;
         width: 200px;
   }
+  #ProductList{
+    display: grid;
+    grid-template-columns: 1fr 1fr  ;
+    gap: 20px;
+    padding-bottom:40px;
+    min-height: 600px;
+    }
+    .Product {
+        height: 200px;
+        width: 240px;
+        font-size:20px;
+    
+        padding: 10px;
+        margin: 5px;
+        transition-property: box-shadow margin-top filter;
+        transition-duration: .2s;
+        border-radius : 7px;
+        box-shadow : 0px 0px 2px 0px grey;
+        padding-bottom: 10x;
+    
+    }
   }
 
- .DVD{
-     display: none;
- }
- .Furniture{
-     display: none;
- }
- .Book {
-     display: none;
- }
+  /* On screens that are 360px width or less */
+@media screen and (max-width: 400px) {
+    #Header {
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        gap: 10%;
+    }
+    .Product {
+        height: 180px;
+        width: 200px;
+  }
+  #ProductList{
+    display: grid;
+    grid-template-columns: 1fr  ;
+    margin-left: 20px;
+    gap: 20px;
+    padding-bottom:40px;
+    min-height: 600px;
+    }
+  }
+
 
 
 

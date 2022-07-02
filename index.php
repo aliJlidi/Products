@@ -1,6 +1,7 @@
 
 <?php
 require_once('includes/Product.inc.php');
+require_once('includes/MassDelete.inc.php');
 
 $data = new Product();
 
@@ -29,18 +30,22 @@ $all = $data->fetchAll();
         <h2>Product List</h2>
         <div class="ButtonContainer">
             <button type="button" class="btn btn-light" style="margin-right: 10px;" onclick="location.href='productForm.php'">ADD</button>
-            <button type="button" class="btn btn-danger">MASS DELETE</button>
+            <button  type="submit"  class="btn btn-danger" form="myform"
+                value="Delete"
+                name="delete">MASS DELETE</button>
         </div>
 
       </section>
       <hr class="solid">
+      <form method="POST"action="index.php" id="myform">
       <section id="ProductList">
   <?php
 
   foreach ($all as $key=>$val) {?>
          <div class="Product">
              <div class="Checkbox">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <input class="form-check-input" type="checkbox"
+                name="checkbox[]" value=<?=$val['sku']?> id="flexCheckDefault">
              </div>
              <div class="Description">
                  <div id="sku"><?= $val['sku']?></div>
@@ -52,7 +57,9 @@ $all = $data->fetchAll();
             
          </div>
          <?php }  ?>
+       
     </section>
+    </form>
     <hr class="solid">
     <section id="Footer">
     <div>Scandiweb Test assignment</div>
