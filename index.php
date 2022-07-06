@@ -47,7 +47,7 @@ $all = $data->fetchAll();
          <div class="Product">
              <div class="Checkbox">
                 <input class="form-check-input boxcheck" type="checkbox"
-                name="checkbox[]" value=<?=$val['sku']?> id="flexCheckDefault">
+                name="checkbox[]" value=<?=$val['sku']?>>
              </div>
              <div class="Description">
                  <div id="sku"><?= $val['sku']?></div>
