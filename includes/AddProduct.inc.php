@@ -72,8 +72,7 @@ elseif(!preg_match ("/^[0-9]*$/", $price) ) {
           $obj->set_name($_POST['name']);
           $obj->set_price($_POST['price']);
           $obj->set_size($_POST['size']);
-          $obj->insertData(); 
-          header('Location: index.php');
+          $obj->AddDVD(); 
         }
       
  
@@ -115,8 +114,8 @@ elseif(!preg_match ("/^[0-9]*$/", $price) ) {
             $obj->set_name($_POST['name']);
             $obj->set_price($_POST['price']);
             $obj->set_dimension($_POST['height'],$_POST['width'],$_POST['length']);
-            $obj->insertData(); 
-            header('Location: index.php');
+            $obj->AddFurniture(); 
+        
             }
         }
         elseif($_POST["productType"]=='Book'){
@@ -136,8 +135,8 @@ elseif(!preg_match ("/^[0-9]*$/", $price) ) {
             $obj->set_name($_POST['name']);
             $obj->set_price($_POST['price']);
             $obj->set_weight($_POST['weight']);
-            $obj->insertData(); 
-            header('Location: index.php');
+            $obj->AddBook(); 
+          
         }
     }
         else{

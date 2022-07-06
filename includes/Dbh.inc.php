@@ -4,19 +4,19 @@ if(!defined("DB_TYPE")){
 
 }
 if(!defined("DB_HOST")){
-    define("DB_HOST","localhost");
+    define("DB_HOST","remotemysql.com");
     
 }
 if(!defined("DB_NAME")){
-    define("DB_NAME","products");
+    define("DB_NAME","5foVgmIY37");
     
 }
 if(!defined("DB_PWD")){
-    define("DB_PWD","");
+    define("DB_PWD","AWKGiyBlpQ");
     
 }
 if(!defined("DB_USER")){
-    define("DB_USER","root");
+    define("DB_USER","5foVgmIY37");
     
 }
 
