@@ -1,10 +1,12 @@
 $(document).ready(function () {
+  
     $("#productType").change(function () {
-        $(".Book").hide(); $(".Furniture").hide();$(".DVD").hide();
+        $(".weight").hide(); $(".height").hide();$(".size").hide();
         var inputVal = $(this).val();
+        if(inputVal!="Choose..."){
         var div = $("." + inputVal);
-      
         $(div).show();
+    }
     });
 
 });

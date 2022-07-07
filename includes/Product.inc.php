@@ -5,6 +5,7 @@ class Product {
   private $sku;
   private $name;
   private $price;
+  private $type;
   protected $dbCnx;
 
   //fucntions
@@ -69,21 +70,20 @@ class Product {
 
 // DVD is inherited from Product
 class DVD extends Product {
-  private $size;
  // Methods
-  public function __construct($sku="",$name="",$price="",$size="")
+  public function __construct($sku="",$name="",$price="",$type="")
     {
-    parent::__construct($sku,$name,$price,$size);
-    $this->size=$size;
+    parent::__construct($sku,$name,$price,$type);
+    $this->type=$type;
     }
-  public function set_size($size){
-  $this->size = "Size: ".$size." MB";
+  public function set_type($type){
+  $this->type = "Size: ".$type." MB";
     }
-  public function get_size() {
-    return $this->size;
+  public function get_type() {
+    return $this->type;
     }
-  public function AddDVD(){
-       $add = parent::insertData($this->get_sku(),$this->get_name(),$this->get_price(),$this->get_size());
+  public function Add(){
+       $add = parent::insertData($this->get_sku(),$this->get_name(),$this->get_price(),$this->get_type());
        return $add;
  }
 }
@@ -96,7 +96,7 @@ class Furniture extends Product {
     private $height;
     private $width;
     private $length;
-    private $dimension;
+    private $type;
  // Methods
    public function set_height($height){
   $this->height = $height;
@@ -116,18 +116,18 @@ class Furniture extends Product {
    public function get_length() {
         return $this->length;
       }
- public function set_dimension($height,$width,$length){
-  $this->dimension = "Dimension: ".$height."x".$width."x".$length;
+ public function set_type($height,$width,$length){
+  $this->type = "Dimension: ".$height."x".$width."x".$length;
       }
-   public function get_dimension() {
-    return $this->dimension;
+   public function get_type() {
+    return $this->type;
      }
- public function __construct($sku="",$name="",$price="",$dimension=""){
-  parent::__construct($sku,$name,$price,$dimension);
-    $this->dimension=$dimension;       
+ public function __construct($sku="",$name="",$price="",$type=""){
+  parent::__construct($sku,$name,$price,$type);
+    $this->type=$type;       
      }
- public function AddFurniture(){
-  $add = parent::insertData($this->get_sku(),$this->get_name(),$this->get_price(),$this->get_dimension());
+ public function Add(){
+  $add = parent::insertData($this->get_sku(),$this->get_name(),$this->get_price(),$this->get_type());
   return $add;
     }
   }
@@ -136,23 +136,22 @@ class Furniture extends Product {
 
   // Book is inherited from Product
 class Book extends Product {
-    public $weight;
  // Methods
- public function set_weight($weight){
-  $this->weight = "Weight: ".$weight." KG";
+ public function set_type($type){
+  $this->type = "Weight: ".$type." KG";
    }
- public function get_weight() {
-    return $this->weight;
+ public function get_type() {
+    return $this->type;
    }
 
- public function __construct($sku="",$name="",$price="",$weight="")
+ public function __construct($sku="",$name="",$price="",$type="")
  {
-    parent::__construct($sku,$name,$price,$weight);
-    $this->weight = $weight;  
+    parent::__construct($sku,$name,$price,$type);
+    $this->type = $type;  
  }
 
- public function AddBook(){
-  $add = parent::insertData($this->get_sku(),$this->get_name(),$this->get_price(),$this->get_weight());
+ public function Add(){
+  $add = parent::insertData($this->get_sku(),$this->get_name(),$this->get_price(),$this->get_type());
   return $add;
 }
   }

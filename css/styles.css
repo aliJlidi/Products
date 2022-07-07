@@ -69,19 +69,26 @@ margin: 15px;
     margin: 20px;
 }
 
+.type{
+    box-shadow: #bbb;
+    border:solid 1px #bbb;
+    border-radius: 5px ;
+ 
+}
+
 .error {
     color: #FF0001;
     margin-left:5px ;
 }  
 
 
-.DVD{
+.size{
     display: none;
 }
-.Furniture{
+.height{
     display: none;
 }
-.Book {
+.weight{
     display: none;
 }
 
