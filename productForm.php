@@ -1,5 +1,9 @@
 <?php
+require_once('includes/Product.inc.php');
 require_once('includes/AddProduct.inc.php');
+static $obj = new CreateProduct();
+if(isset($_POST['save'])){ $obj->AddProduct();}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,7 +34,7 @@ require_once('includes/AddProduct.inc.php');
           <hr class="solid">
           <section id="productForm" class="col-md-3 contents">
           <span class = "error">* required field  </span>  
-            <form id="myform" class="form" action="productForm.php" method="POST">
+            <form id="myform" name="myform" class="form" action="productForm.php" method="POST">
 
                                 <!--SKU ELEMENT -->
                 <div class="formElement">
@@ -38,9 +42,9 @@ require_once('includes/AddProduct.inc.php');
                   <input type="text"
                     id="sku"
                     name="sku"
-                    value="<?=$sku?>"
+                    value="<?=$obj->sku?>"
                      class="form-control" style="width: 100%;"  placeholder=" SKU">
-                     <span class="error" >*<?php echo $skuErr; ?> </span>
+                     <span class="error" >*<?php echo $obj->skuErr; ?> </span>
                 </div>
                                     <!--END OF SKU ELEMENT -->                      
 
@@ -50,9 +54,9 @@ require_once('includes/AddProduct.inc.php');
                   <input type="text"
                   id="name"
                   name="name"
-                  value="<?=$name?>"
+                  value="<?=$obj->name?>"
                    class="form-control " style="width: 100%;" placeholder="Name">  
-                  <span class="error">* <?php echo $nameErr; ?> </span>
+                  <span class="error">* <?php echo $obj->nameErr; ?> </span>
                 </div>
                                   <!--END OF NAME ELEMENT -->
 
@@ -62,13 +66,14 @@ require_once('includes/AddProduct.inc.php');
                     <input type="text"
                     id="price" 
                     name="price" 
-                    value="<?=$price?>"
+                    value="<?=$obj->price?>"
                     class="form-control " style="width: 100%;" placeholder="Price">
-                    <span class="error">* <?php echo $priceErr; ?> </span>
+                    <span class="error">* <?php echo $obj->priceErr; ?> </span>
                   </div>
                                     <!-- END OF PRICE ELEMENT -->
 
                                    <!-- PRODUCT TYPE ELEMENT  -->
+                                   <div id="type" style="display:none ;"><?=$obj->type?></div>
                   <div class="formElement">
                     <div class="input-group-prepend">
                       <label  class="label" >Type</label>
@@ -79,7 +84,7 @@ require_once('includes/AddProduct.inc.php');
                       <option value="height">Furniture</option>
                       <option value="weight">Book</option>
                     </select>
-                    <span class="error">* <?php echo $typeErr; ?> </span>
+                    <span class="error">* <?php echo $obj->typeErr; ?> </span>
                   </div>
                           <!--        END OF PRODUCT TYPE ELEMENT            -->
 
@@ -89,9 +94,9 @@ require_once('includes/AddProduct.inc.php');
                     <input type="text" class="form-control " style="width: 100%;"
                      id="size"
                      name="size"
-                     value="<?=$size?>"
+                     value="<?=$obj->size?>"
                       placeholder="Size">
-                    <span class="error">* <?php echo $sizeErr; ?> </span>
+                    <span class="error">* <?php echo $obj->sizeErr; ?> </span>
                   </div>
 
                                 <!-- END OF DVD ELEMENT -->
@@ -102,16 +107,16 @@ require_once('includes/AddProduct.inc.php');
                     <label class="label" >Height(CM)</label>
                     <input type="text" class="form-control " style="width: 100%;"
                      id="height"
-                     value="<?=$height?>"
+                     value="<?=$obj->height?>"
                      name="height"
                       placeholder="Height">
-                    <span class="error">* <?php echo $heightErr; ?> </span>
+                    <span class="error">* <?php echo $obj->heightErr; ?> </span>
                     </div>
                     <div>
                     <label class="label" >Width(CM)</label>
                     <input type="text" class="form-control " style="width: 100%;"
                      id="width" 
-                     value="<?=$width?>"
+                     value="<?=$obj->width?>"
                      name="width"
                       placeholder="Width">
                     
@@ -120,7 +125,7 @@ require_once('includes/AddProduct.inc.php');
                     <label class="label" >Lenght(CM)</label>
                     <input type="text" class="form-control " style="width: 100%;"
                      id="length" 
-                     value="<?=$length?>"
+                     value="<?=$obj->length?>"
                      name="length"
                      placeholder="Lenght">
                     
@@ -138,9 +143,9 @@ require_once('includes/AddProduct.inc.php');
                     <input type="text" class="form-control " style="width: 100%;"
                      id="weight"
                      name="weight"
-                     value="<?=$weight?>"
+                     value="<?=$obj->weight?>"
                       placeholder="Weight">
-                    <span class="error">* <?php echo $weightErr; ?> </span>
+                    <span class="error">* <?php echo $obj->weightErr; ?> </span>
                   </div>
 
                                         <!--END OF BOOK-->

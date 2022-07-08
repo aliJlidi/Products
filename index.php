@@ -2,14 +2,10 @@
 <?php
 require_once('includes/Product.inc.php');
 require_once('includes/MassDelete.inc.php');
-
+//create an instance of product object to read all the products 
 $data = new Product();
-
 $all = $data->fetchAll();
-
-
-
-   
+if(isset($_POST['delete'])){$obj = new MassDelete(); $obj->deleteItems();}
 ?>
 
 

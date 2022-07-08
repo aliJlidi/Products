@@ -1,15 +1,11 @@
 <?php
-require_once('Product.inc.php');
-if(isset($_POST['delete']))
-{
+class MassDelete extends Product {
+      function deleteItems(){
     $checkboxex = $_POST['checkbox'];
-$data = new Product();
-
 foreach($checkboxex as $sku){
-    $data->delete($sku);
-   
-}
-
-
+    parent::delete($sku);
+            }
+echo "<script>document.location='index.php'</script>";         
+   }
 }
 ?>
