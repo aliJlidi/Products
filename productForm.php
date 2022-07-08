@@ -1,7 +1,7 @@
 <?php
 require_once('includes/Product.inc.php');
 require_once('includes/AddProduct.inc.php');
-static $obj = new CreateProduct();
+ $obj = new CreateProduct();
 if(isset($_POST['save'])){ $obj->AddProduct();}
 
 ?>
